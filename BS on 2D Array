@@ -1,0 +1,28 @@
+/**
+ * Problem: Row with Maximum Number of 1s
+ * Approach:
+ * - Start from the top-right corner.
+ * - Move left when you see 1 (because there may be more 1s).
+ * - Move down when you see 0.
+ * - Keep track of the row index where you found most 1s.
+  Tc-  O(N+M)
+  Sc- O(1)
+ */
+
+class Solution {
+public:
+    int rowWithmax1s(vector<vector<int>> &matrix, int n, int m) {
+        int maxRow = -1; // Store index of the row with max 1s
+        int j = m - 1;   // Start at the last column
+        
+        for(int i = 0; i < n; i++) {
+            // Move left as long as there are 1s
+            while(j >= 0 && matrix[i][j] == 1) {
+                j--;
+                maxRow = i; // Update row index whenever we move left
+            }
+        }
+        
+        return maxRow;
+    }
+};
